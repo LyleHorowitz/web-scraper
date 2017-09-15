@@ -4,9 +4,15 @@ var mongojs = require("mongojs");
 // Require request and cheerio. This makes the scraping possible
 var request = require("request");
 var cheerio = require("cheerio");
+var mongoose = require("mongoose");
 
 // Initialize Express
 var app = express();
+
+var Article = require("./models/Article.js");
+
+// Set mongoose to leverage built in JavaScript ES6 Promises
+mongoose.Promise = Promise;
 
 // Database configuration
 var databaseUrl = "postdb";
@@ -76,7 +82,44 @@ app.get("/scrape", function(req, res) {
   res.send("Scrape Complete");
 });
 
-mongoose.connect("mongodb://heroku_3fnrdd84:af4r5u0kuh7cfkt4okdn6pjd6g@ds135624.mlab");
+///
+
+// This will get the articles we scraped from mongoDB
+app.get("/articles", function(req, res) {
+  // Grab every doc in the Articles array
+  Article.find({ "saved": false }, function(error, doc) {
+    // Log any errors
+    if (error) {
+      console.log(error);
+    }
+    // Or send the doc to the browser as a json object
+    else {
+      // return (doc);
+      res.json(doc);
+    }
+  });
+});
+
+// Grab an article by it's ObjectId
+app.get("/articles/:id", function(req, res) {
+  // Using the id passed in the id parameter, prepare a query that finds the matching one in our db...
+  Article.findOne({ "_id": req.params.id })
+  // ..and populate all of the comments associated with it
+  .populate("comment")
+  // now, execute our query
+  .exec(function(error, doc) {
+    // Log any errors
+    if (error) {
+      console.log(error);
+    }
+    // Otherwise, send the doc to the browser as a json object
+    else {
+      res.json(doc);
+    }
+  });
+});
+
+mongoose.connect("mongodb://heroku_3fnrdd84:af4r5u0kuh7cfkt4okdn6pjd6g@ds135624");
 
 // Listen on port 3000
 app.listen(3000, function() {
