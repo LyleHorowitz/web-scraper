@@ -1,79 +1,50 @@
 <!DOCTYPE html>
-<html lang="en-us">
-  <head>
-    <meta charset="UTF-8">
-    <title>Web Scraper</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <style media="screen">
-      body {
-        text-align: center;
-        background-color: cornflowerblue;
-      }
-      h1 {
-        font-size: 40px;
-        color: white;
-      }
-      .deleter {
-        margin-left: 20px;
-        color: red;
-        cursor: pointer;
-        text-align: right;
-      }
-      input {
-        width: 400px;
-        height: 50px;
-        margin-left: auto;
-        margin-right: auto;
-        font-size: 42px;
-        background-color: antiquewhite;
-      }
-      textarea {
-        width: 400px;
-        height: 400px;
-        margin-left: auto;
-        margin-right: auto;
-        font-size: 24px;
-        background-color: antiquewhite;
+<html lang="en">
 
-      }
-      .dataTitle {
-        cursor: pointer;
-        font-size: 24px;
-      }
-      #results {
-        width: 400px;
-        height: 200px;
-        overflow: auto;
-        margin-left: auto;
-        margin-right: auto;
-        background-color: antiquewhite;
-      }
-      #actionbutton {
-        display: inline-block;
-      }
-      #buttons {
-        margin: 20px;
-      }
-    </style>
-  </head>
+<head>
+  <title>AHS Mongo Scraper</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/paper/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Cormorant+SC" rel="stylesheet">
+</head>
 
-  <body>
-    <h1>Mongo Post App</h1>
-    <div id="userinput">
-        <p>Title</p>
-        <input type="text" id="title" />
-      <br>
-        <p>Post</p>
-        <textarea id="post"></textarea>
-      <div id="buttons">
-        <div id="actionbutton">
-          <button id="makenew">Submit</button>
-        </div>
-        <button id="clearall">Delete All Posts</button>
-      </div>
+<body>
+  <nav class="navbar">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">AHS Mongo Scraper</a>
     </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="/">Home</a></li>
+      <li><a href="/saved">Saved Articles</a></li>
+      <li><a class="btn btn-danger scrape-new">SCRAPE NEW ARTICLES!</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="jumbotron text-center">
+  <div class="overlay">
+  </div>
+  <div class="background-image">
+  </div>
+  <div class="caption">
+    <h1>News Scraper</h1>
+    <p>AHS</p>
+  </div>
+</div>
+<div class="container article-container">
+</div>
 
-    <div id="results"></div>
-    <script src="app.js"></script>
-  </body>
+<footer class="footer">
+  <div class="container">
+    <p>&copy; Lyle Horowitz 2017</p>
+  </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
+
+</body>
+
 </html>
