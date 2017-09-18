@@ -32,7 +32,7 @@ app.get("/", function(req, res) {
 // Retrieve data from the db
 app.get("/all", function(req, res) {
   // Find all results from the scrapedData collection in the db
-  db.scrapedData.find({}, function(error, found) {
+  db.postdb.find({}, function(error, found) {
     // Throw any errors to the console
     if (error) {
       console.log(error);
@@ -119,7 +119,7 @@ app.get("/articles/:id", function(req, res) {
   });
 });
 
-mongoose.connect("mongodb://heroku_3fnrdd84:af4r5u0kuh7cfkt4okdn6pjd6g@ds135624");
+mongoose.connect("mongodb://heroku_3fnrdd84:af4r5u0kuh7cfkt4okdn6pjd6g@ds135624" || "mongodb://localhost/postdb");
 
 // Listen on port 3000
 app.listen(3000, function() {
